@@ -8,18 +8,18 @@ import java.util.regex.Pattern;
 
 public interface LoggerSpyMatcher extends Predicate<List<ILoggingEvent>> {
 
-    static LoggerSpyMatcher equalTo(String value) {
-        return events -> events.stream()
-                .anyMatch(event -> event.getFormattedMessage().equals(value));
-    }
+    interface MatchPredicate extends Predicate<ILoggingEvent> {
 
-    static LoggerSpyMatcher startsWith(String value) {
-        return events -> events.stream()
-                .anyMatch(event -> event.getFormattedMessage().startsWith(value));
-    }
+        static MatchPredicate equalTo(String value) {
+            return event -> event.getFormattedMessage().equals(value);
+        }
 
-    static LoggerSpyMatcher matches(Pattern pattern) {
-        return events -> events.stream()
-                .anyMatch(event -> pattern.matcher(event.getFormattedMessage()).matches());
+        static MatchPredicate startsWith(String value) {
+            return event -> event.getFormattedMessage().startsWith(value);
+        }
+
+        static MatchPredicate matches(Pattern pattern) {
+            return event -> pattern.matcher(event.getFormattedMessage()).matches();
+        }
     }
 }
