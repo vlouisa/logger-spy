@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
 
-import static dev.louisa.LoggerSpyMatcher.MatchPredicate.equalTo;
-import static dev.louisa.LoggerSpyMatcher.MatchPredicate.matches;
-import static dev.louisa.LoggerSpyMatcher.MatchPredicate.startsWith;
+import static dev.louisa.LoggerSpyMatcher.equalTo;
+import static dev.louisa.LoggerSpyMatcher.matches;
+import static dev.louisa.LoggerSpyMatcher.startsWith;
 import static java.util.regex.Pattern.compile;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -55,7 +55,7 @@ public class LoggerSpyTest {
     }
 
     @Test
-    void should_inform_that_no_line_has_been_looged_that_complies_to_a_given_regex() {
+    void should_inform_that_no_line_has_been_logged_that_complies_to_a_given_regex() {
         log.info("Start task Nr. 13");
 
         Pattern pattern = compile("Start task #[0-9]{2}");

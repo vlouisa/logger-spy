@@ -20,7 +20,7 @@ public class LoggerSpy {
         logger.addAppender(listAppender);
     }
 
-    public boolean containsMessage(LoggerSpyMatcher.MatchPredicate matcher) {
-        return listAppender.list.stream().anyMatch(matcher);
+    public boolean containsMessage(LoggerSpyMatcher matcher) {
+        return matcher.test(listAppender.list);
     }
 }
